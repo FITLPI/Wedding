@@ -8,25 +8,29 @@ const Bridge = ({ rotateId }: IBridge) => {
   const [visiable, setVisiable] = useState<boolean>(false);
 
   useEffect(() => {
+    let timeOut = -1;
     if (rotateId === 3) {
-      setTimeout(() => setVisiable(true), 1000);
+      timeOut = setTimeout(() => setVisiable(true), 1000);
     }
+    return () => {
+      timeOut > -1 && clearTimeout(timeOut);
+    };
   }, [rotateId]);
   return (
     visiable && (
       <div className="animateBridgeUp" style={conteinerStye}>
-        <img src={bridge} style={{ position: "absolute", top: "-50vw" }} />
+        <img src={bridge} style={{ position: "absolute", top: "-50dvw" }} />
       </div>
     )
   );
 };
 const conteinerStye: CSSProperties = {
   position: "absolute",
-  width: "100vw",
-  height: "100vw",
-  left: "0vw",
-  bottom: "-5vh",
-  zIndex: "10",
+  width: "100dvw",
+  height: "100dvw",
+  left: "0dvw",
+  bottom: "-5dvh",
+  zIndex: "5",
 };
 
 export default Bridge;

@@ -1,7 +1,5 @@
 import React from "react";
 import withoutBridge from "../assets/withoutBridge.png";
-import "../animate.css";
-import { centerStyle } from "../style";
 import { white } from "../assets/colors";
 import Curtains from "./Curtains";
 
@@ -13,20 +11,20 @@ const Scene = ({ children }: IScene) => {
   return (
     <div
       style={{
-        width: "100vw",
-        height: "100vh",
+        width: "100dvw",
+        height: "100dvh",
         background: white,
         overflow: "hidden",
         position: "relative",
-        ...centerStyle,
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
-      <Curtains />
       <img
         style={{
           position: "absolute",
-          width: "100vw",
-          height: "100vh",
+          width: "100dvw",
+          height: "100dvh",
           zIndex: "3",
         }}
         src={withoutBridge}

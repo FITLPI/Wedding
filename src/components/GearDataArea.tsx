@@ -8,15 +8,15 @@ const GearDataArea = ({ children, isTop }: IGearDataArea) => {
     <div
       style={{
         ...dataAreaStyle,
-        top: isTop ? "90vw" : "-30vw",
+        top: isTop ? "100dvw" : "-50dvw",
         transform: isTop ? "none" : "rotateZ(180deg)",
       }}
     >
       <div
         style={{
           position: "relative",
-          height: "60vw",
-          width: "60vw",
+          height: "70dvw",
+          width: "70dvw",
         }}
       >
         {children}
@@ -26,9 +26,9 @@ const GearDataArea = ({ children, isTop }: IGearDataArea) => {
 };
 
 const dataAreaStyle: CSSProperties = {
-  height: "60vw",
-  width: "60vw",
-  right: "-28vw",
+  height: "70dvw",
+  width: "70dvw",
+  right: "-31dvw",
   position: "absolute",
 };
 

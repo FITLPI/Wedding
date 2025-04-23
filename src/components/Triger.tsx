@@ -8,11 +8,28 @@ const Triger = ({ isDisable, onClick }: ITriger) => {
       onClick={() => !isDisable && onClick && onClick()}
       style={{
         position: "absolute",
-        zIndex: "11",
-        width: "100vw",
-        height: "100vh",
+        zIndex: "12",
+        width: "100dvw",
+        height: "100dvh",
       }}
-    ></div>
+    >
+      {!isDisable && (
+        <div
+          className="animateMessage"
+          style={{
+            position: "absolute",
+            width: "100dvw",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "6dvw",
+            padding: "2dvh 0dvh",
+          }}
+        >
+          <p>нажмите чтобы продолжить</p>
+        </div>
+      )}
+    </div>
   );
 };
 

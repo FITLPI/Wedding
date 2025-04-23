@@ -2,7 +2,6 @@ import { CSSProperties } from "styled-components";
 import backPopup from "../assets/backPopup.png";
 import rope from "../assets/rope.png";
 import cloud from "../assets/cloud4.png";
-import map from "../assets/map.png";
 import map2 from "../assets/map2.png";
 import Enters from "./Enters";
 interface IPopup {
@@ -46,19 +45,27 @@ const Clouds = (): React.ReactElement => (
     </div>
     <div
       style={{
-        width: "48dvw",
-        height: "35dvw",
+        width: "84dvw",
+        height: "67dvw",
         ...cloudStyle,
-        top: "12dvw",
-        left: "38dvw",
+        top: "0dvw",
+        left: "4dvw",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        transform: "rotateY(180deg)",
       }}
     >
-      <p style={{ fontSize: "5dvw", fontStyle: "italic" }}>
-        Начало в 16:00<br></br>
-        <Enters count={7} />у ЗАГСа
+      <p
+        style={{
+          fontSize: "6dvw",
+          fontStyle: "italic",
+          textAlign: "center",
+          transform: "rotateY(180deg)",
+        }}
+      >
+        16:00 - Церемония в ЗАГСе
+        <br></br>17:00 - Банкет
       </p>
     </div>
     <div
@@ -66,7 +73,7 @@ const Clouds = (): React.ReactElement => (
         width: "50dvw",
         height: " 34dvw",
         ...cloudStyle,
-        top: "-10dvw",
+        top: "-7dvw",
         left: "-2dvw",
         display: "flex",
         alignItems: "center",
@@ -85,7 +92,7 @@ const Clouds = (): React.ReactElement => (
         width: "30dvw",
         height: "20dvw",
         ...cloudStyle,
-        top: "5dvw",
+        top: "8dvw",
         left: "27dvw",
         display: "flex",
         alignItems: "center",
@@ -96,25 +103,6 @@ const Clouds = (): React.ReactElement => (
         {Math.floor(
           (new Date(2025, 7, 7).getTime() - new Date().getTime()) / 86400000
         )}
-      </p>
-    </div>
-    <div
-      style={{
-        width: "48dvw",
-        height: "35dvw",
-        ...cloudStyle,
-        top: "21dvw",
-        left: "-1dvw",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: "-1",
-      }}
-    >
-      <p style={{ fontSize: "5dvw", fontStyle: "italic" }}>
-        Далее в 17:00<br></br>
-        <Enters count={7} />
-        банкет
       </p>
     </div>
     <div
@@ -132,7 +120,7 @@ const Clouds = (): React.ReactElement => (
       <p style={{ fontSize: "5dvw", fontStyle: "italic" }}>
         <Enters count={7} />
         ПРИНЯТЬ<br></br>
-        ПРИГЛОШЕНИЕ
+        ПРИГЛАШЕНИЕ
       </p>
     </div>
   </>
@@ -153,7 +141,8 @@ const Map = (): React.ReactElement => (
         backgroundPosition: "center",
         backgroundSize: "101% 101%",
         backgroundRepeat: "no-repeat",
-        border: "0.5dvw solid grey ",
+        border: "0.5dvw solid white ",
+        borderRadius: "4dvw",
       }}
       onClick={() => {
         window.open(
@@ -162,7 +151,13 @@ const Map = (): React.ReactElement => (
       }}
     ></div>
 
-    <p>нажмите чтобы открыть в приложении</p>
+    <p
+      style={{
+        textAlign: "end",
+      }}
+    >
+      нажмите чтобы открыть в приложении*
+    </p>
   </div>
 );
 

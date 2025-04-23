@@ -6,7 +6,7 @@ const Enters = ({ count }: IEnters) => {
     !isNaN(count) &&
     Array(count)
       .fill("")
-      .map(() => <>&nbsp;</>)
+      .map((_, i) => <span key={i}>&nbsp;</span>)
   );
 };
 

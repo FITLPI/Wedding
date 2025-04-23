@@ -29,6 +29,18 @@ const Scene = ({ children }: IScene) => {
         }}
         src={withoutBridge}
       />
+      <div
+        style={{
+          position: "absolute",
+          width: "100dvw",
+          height: "100dvh",
+          zIndex: "3",
+          backgroundImage: `url(${withoutBridge})`,
+          backgroundSize: "auto 100%",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
       {children}
     </div>
   );

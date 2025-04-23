@@ -65,6 +65,7 @@ function App() {
           setIsDisable(true);
         }}
         isDisable={isDisable}
+        visiable={!visiable}
       />
       <div style={containerStyle}>
         <Gear rotate={rotate}>

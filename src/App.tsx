@@ -12,6 +12,10 @@ import Enters from "./components/Enters";
 import Cup from "./components/Cup";
 import Popup from "./components/Popup";
 import Curtains from "./components/Curtains";
+const scriptURL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
+// @ts-ignore
+import Tabletop from "tabletop";
+import Boat from "./components/Boat";
 
 function App() {
   const [name, setName] = useState<{
@@ -49,13 +53,28 @@ function App() {
 
   useEffect(() => {
     let timeOut = -1;
-    if (rotate == 3) {
-      timeOut = setTimeout(() => setVisiable(true), 1000);
+    if (rotate === 3) {
+      timeOut = setTimeout(() => setIsDisable(false), 2000);
+    }
+    if (rotate === 4) {
+      setVisiable(true);
     }
     return () => {
       timeOut > -1 && clearTimeout(timeOut);
     };
   }, [rotate]);
+
+  const addGuest = () =>
+    fetch(scriptURL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name.first + " " + name.last,
+      }),
+    });
 
   return (
     <Scene>
@@ -153,9 +172,10 @@ function App() {
         </Gear>
         <Calendar rotateId={rotate} />
       </div>
+      <Boat rotateId={rotate} />
       <Curtains isOpen={!visiable} />
       <Bridge rotateId={rotate} />
-      <Popup visiable={visiable} />
+      <Popup visiable={visiable} accept={() => addGuest()} />
     </Scene>
   );
 }

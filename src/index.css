@@ -251,10 +251,10 @@ h1 {
 
 @keyframes upBridge {
   0% {
-    bottom: -50dvh;
+    bottom: -100dvh;
   }
   100% {
-    bottom: -5dvh;
+    bottom: -10dvh;
   }
 }
 
@@ -262,7 +262,9 @@ h1 {
   animation: upBridge;
   animation-duration: 2s;
   animation-timing-function: ease-in-out;
-  bottom: -5dvh;
+  bottom: -10dvh;
+  animation-delay: 1s;
+  animation-fill-mode: backwards;
 }
 
 @keyframes upCup {
@@ -469,4 +471,74 @@ h1 {
   animation-duration: 4s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: 1;
+}
+
+@keyframes tiltShaking {
+  80% {
+    transform: rotate(0deg);
+  }
+  85% {
+    transform: rotate(2deg);
+  }
+  90% {
+    transform: rotate(0eg);
+  }
+  95% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes jump {
+  from,
+  20%,
+  53%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  40%,
+  43% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -3dvw, 0);
+    transform: translate3d(0, -3dvw, 0);
+  }
+
+  70% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -1.5dvw, 0);
+    transform: translate3d(0, -1.5dvw, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, -0.2dvw, 0);
+    transform: translate3d(0, -2dvw, 0);
+  }
+}
+
+@keyframes moveB {
+  0% {
+    translate: 0dvw;
+  }
+  100% {
+    translate: -100dvw 100dvw;
+  }
+}
+
+.moveBoat {
+  position: absolute;
+  animation: moveB;
+  animation-duration: 4s;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+  animation-delay: 500ms;
+  animation-fill-mode: forwards;
 }

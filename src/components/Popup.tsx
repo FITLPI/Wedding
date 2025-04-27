@@ -4,10 +4,12 @@ import rope from "../assets/rope.png";
 import cloud from "../assets/cloud4.png";
 import map2 from "../assets/map2.png";
 import Enters from "./Enters";
+import { useState } from "react";
 interface IPopup {
   visiable: boolean;
+  accept?: () => void;
 }
-const Popup = ({ visiable }: IPopup) => {
+const Popup = ({ visiable, accept }: IPopup) => {
   return (
     visiable && (
       <div
@@ -20,111 +22,126 @@ const Popup = ({ visiable }: IPopup) => {
       >
         <div className="animateDropPopup" style={placePopup}>
           <Map />
-          <Clouds />
+          <Clouds accept={accept} />
         </div>
       </div>
     )
   );
 };
 
-const Clouds = (): React.ReactElement => (
-  <>
-    <div
-      style={{
-        position: "absolute",
-        left: "12dvw",
-        top: "-89.4dvw",
-        width: "60dvw",
-        height: "90dvw",
-        display: "flex",
-        justifyContent: "space-around",
-      }}
-    >
-      <img key={1} src={rope} style={{ width: "30dvw", height: "90dvw" }} />
-      <img key={2} src={rope} style={{ width: "30dvw", height: "90dvw" }} />
-    </div>
-    <div
-      style={{
-        width: "84dvw",
-        height: "67dvw",
-        ...cloudStyle,
-        top: "0dvw",
-        left: "4dvw",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        transform: "rotateY(180deg)",
-      }}
-    >
-      <p
+interface IClouds {
+  accept?: () => void;
+}
+const Clouds = ({ accept }: IClouds): React.ReactElement => {
+  const [isClick, setIsClick] = useState<boolean>(false);
+
+  return (
+    <>
+      <div
         style={{
-          fontSize: "6dvw",
-          fontStyle: "italic",
-          textAlign: "center",
+          position: "absolute",
+          left: "12dvw",
+          top: "-89.4dvw",
+          width: "60dvw",
+          height: "90dvw",
+          display: "flex",
+          justifyContent: "space-around",
+        }}
+      >
+        <img key={1} src={rope} style={{ width: "30dvw", height: "90dvw" }} />
+        <img key={2} src={rope} style={{ width: "30dvw", height: "90dvw" }} />
+      </div>
+      <div
+        style={{
+          width: "84dvw",
+          height: "67dvw",
+          ...cloudStyle,
+          top: "0dvw",
+          left: "4dvw",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
           transform: "rotateY(180deg)",
         }}
       >
-        16:00 - Церемония в ЗАГСе
-        <br></br>17:00 - Банкет
-      </p>
-    </div>
-    <div
-      style={{
-        width: "50dvw",
-        height: " 34dvw",
-        ...cloudStyle,
-        top: "-7dvw",
-        left: "-2dvw",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "flex-start",
-      }}
-    >
-      <p style={{ fontSize: "4.5dvw", fontStyle: "italic" }}>
-        <Enters count={8} />
-        Осталось дней <br></br>
-        <Enters count={13} />
-        до свадьбы:
-      </p>
-    </div>
-    <div
-      style={{
-        width: "30dvw",
-        height: "20dvw",
-        ...cloudStyle,
-        top: "8dvw",
-        left: "27dvw",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <p style={{ fontSize: "8dvw", fontStyle: "italic" }}>
-        {Math.floor(
-          (new Date(2025, 7, 7).getTime() - new Date().getTime()) / 86400000
-        )}
-      </p>
-    </div>
-    <div
-      style={{
-        width: "54dvw",
-        height: "36dvw",
-        ...cloudStyle,
-        top: "96dvw",
-        left: "36dvw",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <p style={{ fontSize: "5dvw", fontStyle: "italic" }}>
-        <Enters count={7} />
-        ПРИНЯТЬ<br></br>
-        ПРИГЛАШЕНИЕ
-      </p>
-    </div>
-  </>
-);
+        <p
+          style={{
+            fontSize: "6dvw",
+            fontStyle: "italic",
+            textAlign: "center",
+            transform: "rotateY(180deg)",
+          }}
+        >
+          16:00 - Церемония в ЗАГСе
+          <br></br>17:00 - Банкет
+        </p>
+      </div>
+      <div
+        style={{
+          width: "50dvw",
+          height: " 34dvw",
+          ...cloudStyle,
+          top: "-7dvw",
+          left: "-2dvw",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-start",
+        }}
+      >
+        <p style={{ fontSize: "4.5dvw", fontStyle: "italic" }}>
+          <Enters count={8} />
+          Осталось дней <br></br>
+          <Enters count={13} />
+          до свадьбы:
+        </p>
+      </div>
+      <div
+        style={{
+          width: "30dvw",
+          height: "20dvw",
+          ...cloudStyle,
+          top: "8dvw",
+          left: "27dvw",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <p style={{ fontSize: "8dvw", fontStyle: "italic" }}>
+          {Math.floor(
+            (new Date(2025, 7, 7).getTime() - new Date().getTime()) / 86400000
+          )}
+        </p>
+      </div>
+      <div
+        style={{
+          width: "54dvw",
+          height: "36dvw",
+          ...cloudStyle,
+          top: "96dvw",
+          left: "36dvw",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          animation: !isClick
+            ? "tiltShaking 1250ms linear 5s infinite"
+            : "jump 1.5s linear",
+        }}
+        onClick={() => {
+          accept && accept();
+          setIsClick(true);
+        }}
+      >
+        <p style={{ fontSize: "5dvw", fontStyle: "italic" }}>
+          <Enters count={7} />
+          ПРИНЯТЬ<br></br>
+          ПРИГЛАШЕНИЕ
+        </p>
+      </div>
+    </>
+  );
+};
+
 const Map = (): React.ReactElement => (
   <div>
     <div

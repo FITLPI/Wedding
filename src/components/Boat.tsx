@@ -31,8 +31,10 @@ const Boat = ({ rotateId }: IBoat) => {
           style={{
             background: `url(${simpleGirl})`,
             ...humanStyle,
-            top: "105dvw",
-            left: "50dvw",
+            top: "109dvw",
+            left: "52dvw",
+            width: "27dvw",
+            height: "27dvw",
           }}
         ></div>
         <div

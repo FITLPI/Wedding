@@ -1,6 +1,7 @@
 import { CSSProperties, useEffect, useState } from "react";
 import bridge from "./../assets/bridge.png";
-import proposal from "../assets/proposal.png";
+import proposalGirl from "./../assets/proposalGirl.png";
+import proposalBoy from "./../assets/proposalBoy.png";
 
 interface IBridge {
   rotateId: number;
@@ -21,7 +22,26 @@ const Bridge = ({ rotateId }: IBridge) => {
     visiable && (
       <div className="animateBridgeUp" style={conteinerStye}>
         <img src={bridge} style={{ position: "absolute", top: "-50dvw" }} />
-        <div style={humanStyle}></div>
+        <div
+          style={{
+            ...humanStyle,
+            backgroundImage: `url(${proposalGirl})`,
+            width: "69dvw",
+            height: "69dvw",
+            left: "32dvw",
+            top: "-34dvw",
+          }}
+        ></div>
+        <div
+          style={{
+            ...humanStyle,
+            backgroundImage: `url(${proposalBoy})`,
+            width: "60dvw",
+            height: "60dvw",
+            left: "22dvw",
+            top: "-34dvw",
+          }}
+        ></div>
       </div>
     )
   );
@@ -36,12 +56,9 @@ const conteinerStye: CSSProperties = {
 
 const humanStyle: CSSProperties = {
   position: "absolute",
-  width: "60dvw",
-  height: "60dvw",
   left: "22dvw",
   top: "-34dvw",
   zIndex: "5",
-  backgroundImage: `url(${proposal})`,
   backgroundSize: "contain",
   backgroundRepeat: "no-repeat",
 };

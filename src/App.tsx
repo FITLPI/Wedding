@@ -31,7 +31,7 @@ function App() {
   useLayoutEffect(() => {
     setName(() => {
       let names = decodeURIComponent(
-        window.location.pathname.split("/")[1]
+        window.location.pathname.replace("%20", " ").split("/")[1]
       ).split("NL");
       console.log(names);
       return {

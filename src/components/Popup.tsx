@@ -128,14 +128,20 @@ const Clouds = ({ accept }: IClouds): React.ReactElement => {
             : "jump 1.5s linear",
         }}
         onClick={() => {
-          accept && accept();
+          //accept && accept();
           setIsClick(true);
         }}
       >
         <p style={{ fontSize: "5dvw", fontStyle: "italic" }}>
-          <Enters count={7} />
-          ПРИНЯТЬ<br></br>
-          ПРИГЛАШЕНИЕ
+          {isClick ? (
+            <>ПРИНЯТО</>
+          ) : (
+            <>
+              <Enters count={7} />
+              ПРИНЯТЬ<br></br>
+              ПРИГЛАШЕНИЕ
+            </>
+          )}
         </p>
       </div>
     </>

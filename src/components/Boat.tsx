@@ -8,7 +8,7 @@ interface IBoat {
 }
 const Boat = ({ rotateId }: IBoat) => {
   return (
-    rotateId !== 3 && (
+    [0, 1, 2].includes(rotateId ?? -1) && (
       <div>
         <div
           className={rotateId === 2 ? "moveBoat" : ""}
